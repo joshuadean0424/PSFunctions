@@ -29,7 +29,7 @@ $localPsRepoParam = @{
 } 
 Register-PSRepository @localPsRepoParam
 
-
+Register-PSRepository -Name MALLocalRepo -SourceLocation '\\10.37.202.199\Software\LocalPowerShellRepo' -PublishLocation '\\10.37.202.199\Software\LocalPowerShellRepo' -InstallationPolicy 'Trusted'
 
 #Create a OSInfo module folder 
 

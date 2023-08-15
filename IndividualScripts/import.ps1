@@ -9,3 +9,4 @@ Import-Module Y:\PSModules\JDean.psm1 -Verbose
 
 Start-Transcript "D:\Powershell\transcript\transcript0.txt" -Append
 cd C:\
+cls

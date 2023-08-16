@@ -4,13 +4,14 @@
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 $remotePath = '\\10.37.202.199\Software\LocalPowerShellRepo'
-$localPsRepoParam = @{
+$localparam = @{
 	Name = 'MALLocalRepo'
 	SourceLocation = $remotePath
 	PublishLocation = $remotePath
 	InstallationPolicy = 'Trusted'
 } 
-Register-PSRepository @localPsRepoParam
+Unregister-PSRepository PSGallery
+Register-PSRepository @localparam
 
 Set-ExecutionPolicy Bypass
 Import-Module PowerShellGet

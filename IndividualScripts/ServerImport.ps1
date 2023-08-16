@@ -8,7 +8,6 @@
 ##---------------------------
 
 Get-PSRepository
-
 function Install-MyModules {
     Install-Module PSFunctions -Verbose -Force
     Install-Module psTrustedHosts -Force

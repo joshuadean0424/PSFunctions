@@ -60,3 +60,28 @@ function Go-PSSess{
   function Get-UpTime{
      (Get-Date) - [Management.ManagementDateTimeConverter]::ToDateTime((Get-WmiObject Win32_OperatingSystem -ComputerName localhost).LastBootUpTime)
      }
+
+
+     ##---------------------------
+##Function Import-MyModules
+##This imports all modules from Local PowerShell Repository
+##Author: Joshua Dean
+##Company: Mobis AL
+##---------------------------
+function Import-MyModules {
+  Import-Module PSFunctions -Verbose -Force
+  Import-Module psTrustedHosts -Force
+  Import-Module PoshWSUS -Force
+  Import-Module PSWindowsUpdate -force
+  Import-Module PowerShellGet -force    
+} 
+
+function Install-MyModules {
+  Install-Module PSFunctions -Verbose -Force
+  Install-Module psTrustedHosts -Force
+  Install-Module PoshWSUS -Force
+  Install-Module PSWindowsUpdate -force
+  Install-Module PowerShellGet -force    
+} 
+
+

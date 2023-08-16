@@ -14,6 +14,8 @@ Unregister-PSRepository PSGallery
 Register-PSRepository @localparam
 
 Set-ExecutionPolicy Bypass
+##If Execution Policy is set to "Machine Policy AllSigned" via Group Policy go to GPedit and change via
+## Computer Configuration -> Administrative Templates -> Windows Components -> Windows PowerShell
 Import-Module PowerShellGet
 Get-PSRepository
 Install-Module -Name PSFunctions -RequiredVersion "4.0"
@@ -23,3 +25,6 @@ Import-MyModules
 Set-Default
 Clear-Host
 Write-Host "All Modules Installed and Imported."
+
+Set-ExectionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned
+Set-ExectionPolicy -Scope LocalMachine, CurrentUser -ExecutionPolicy RemoteSigned

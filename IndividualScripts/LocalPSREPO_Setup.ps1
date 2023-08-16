@@ -59,7 +59,7 @@ Find-Module -Repository MALLocalRepo
 #Do web request over TLS1.2 and Publish Module on local PSRepository
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Publish-Module -Path C:\OSInfo -Repository MALLocalRepo -Force
+Publish-Module -Path D:\Github\PSFunctions -Repository MALLocalRepo -Force
 
 
 Install-Module -Name ModuleName -Repository Localrepo -Scope CurrentUser

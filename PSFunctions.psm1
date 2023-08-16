@@ -77,7 +77,6 @@ function Import-MyModules {
 } 
 
 function Install-MyModules {
-  Install-Module PSFunctions -Verbose -Force
   Install-Module psTrustedHosts -Force
   Install-Module PoshWSUS -Force
   Install-Module PSWindowsUpdate -force

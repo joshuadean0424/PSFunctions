@@ -26,5 +26,6 @@ Set-Default
 Clear-Host
 Write-Host "All Modules Installed and Imported."
 
-Set-ExectionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned
-Set-ExectionPolicy -Scope LocalMachine, CurrentUser -ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+Get-ExecutionPolicy -List

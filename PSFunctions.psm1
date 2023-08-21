@@ -62,7 +62,34 @@ function Go-PSSess{
      }
 
 
-     ##---------------------------
+##-----------------------------------------------------------------------------
+####---------------------
+####Function Get-RemoteNIC
+####Remotely invoke command to disable Nic Team named network adaptor
+####Author: Joshua Dean
+####Company: Mobis AL
+####Date last updated: 8/21/2023
+####---------------------------------------------------------------------------
+function Get-RemoteNIC {
+  param($computername, 
+  [System.Management.Automation.PSCredential]$Credential = $(Get-Credential))
+  
+  Invoke-Command -ComputerName $computername -Credential $Credential -ScriptBlock {
+
+    Get-NetAdapter | Format-Table
+  }
+}
+
+
+
+
+
+
+
+
+
+
+##---------------------------
 ##Function Import-MyModules
 ##This imports all modules from Local PowerShell Repository
 ##Author: Joshua Dean

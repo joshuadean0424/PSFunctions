@@ -1,6 +1,9 @@
 ﻿# --------------------------------------------
-# Function Name: p
-# Test if a computer is online (quick ping replacement)
+#### Function Name: p
+#### Test if a computer is online (quick ping replacement)
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
 # --------------------------------------------
 function p{
     param ($COMPUTERNAME)
@@ -20,10 +23,13 @@ function Set-Default {
 
 
 # -----------------------------------------
-# Function Name: Ent-RemSession
-# Enters PS Session with computer and credential params
+#### Function Name: Ent-RemSession
+#### Enters PS Session with computer and credential params
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
 # -----------------------------------------
-function Go-PSSess{
+function Enter-PSSess{
     param($ComputerName, [System.Management.Automation.PSCredential]
       $Credential = $(Get-Credential))
 
@@ -33,6 +39,9 @@ function Go-PSSess{
 # -----------------------------------------
 # Function Name: Adm-PSSess
 # Enters PS Session with computer parameter and administrator credentials
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
 # -----------------------------------------
    
     function Adm-PSSess{
@@ -42,8 +51,11 @@ function Go-PSSess{
     }
    
 # -----------------------------------------
-# Function Name: MAL-PSSess
-# Enters PS Session with computer parameter and malsvradm credentials
+#### Function Name: MAL-PSSess
+#### Enters PS Session with computer parameter and malsvradm credentials
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
 # -----------------------------------------
    
     function MAL-PSSess{
@@ -54,8 +66,11 @@ function Go-PSSess{
    
 
 # -------------------------------------
-#Function Name: Get-UpTime
-# Gets uptime of localhost
+#### Function Name: Get-UpTime
+#### Gets uptime of localhost
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
 # -------------------------------------
   function Get-UpTime{
      (Get-Date) - [Management.ManagementDateTimeConverter]::ToDateTime((Get-WmiObject Win32_OperatingSystem -ComputerName localhost).LastBootUpTime)
@@ -63,12 +78,11 @@ function Go-PSSess{
 
 
 ##-----------------------------------------------------------------------------
-####---------------------
-####Function Get-RemoteNIC
-####Remotely invoke command to disable Nic Team named network adaptor
-####Author: Joshua Dean
-####Company: Mobis AL
-####Date last updated: 8/21/2023
+#### Function Get-RemoteNIC
+#### Remotely invoke command to disable Nic Team named network adaptor
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
 ####---------------------------------------------------------------------------
 function Get-RemoteNIC {
   param($computername, 
@@ -90,10 +104,10 @@ function Get-RemoteNIC {
 
 
 ##---------------------------
-##Function Import-MyModules
-##This imports all modules from Local PowerShell Repository
-##Author: Joshua Dean
-##Company: Mobis AL
+#### Function Import-MyModules
+#### This imports all modules from Local PowerShell Repository
+#### Author: Joshua Dean
+#### Company: Mobis AL
 ##---------------------------
 function Import-MyModules {
   Import-Module PSFunctions -Verbose -Force

@@ -1,3 +1,43 @@
+#### Create-HVM
+#### Creates Basic Hyper-V VM
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
+function Register-HyVM {
+  param($computername, 
+  [System.Management.Automation.PSCredential]$Credential = $(Get-Credential))
+  
+  Invoke-Command -ComputerName $computername -Credential $Credential -ScriptBlock {
+
+    New-VM -Name  -MemoryStartupBytes 512MB -Path "D:\Hyper-V\VMs\"
+    New-VHD
+  }
+}
+
+
+#### Create-HVM
+#### Creates Basic Hyper-V VM
+#### Author: Joshua Dean
+#### Company: Mobis AL
+#### Date last updated: 8/21/2023
+function Remove-HyperVM {
+param ($VMname)
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ####---------------------

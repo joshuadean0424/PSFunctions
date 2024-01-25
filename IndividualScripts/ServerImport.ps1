@@ -3,11 +3,11 @@
 ## Mobis AL
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
-$remotePath = '\\10.37.202.199\Software\LocalPowerShellRepo'
+$localPath = 'D:\PSModules\PSRepository'
 $localparam = @{
-	Name = 'MALLocalRepo'
-	SourceLocation = $remotePath
-	PublishLocation = $remotePath
+	Name = 'MALPSRepo'
+	SourceLocation = $localPath
+	PublishLocation = $localPath
 	InstallationPolicy = 'Trusted'
 } 
 Unregister-PSRepository PSGallery

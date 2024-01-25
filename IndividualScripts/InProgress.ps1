@@ -78,7 +78,7 @@ function Get-LoggedIn {
 }
 
 ##-----------------------------------------------------------------------------
-$RestartTime = 
+ 
 
 
 ##Trusted Hosts all servers array

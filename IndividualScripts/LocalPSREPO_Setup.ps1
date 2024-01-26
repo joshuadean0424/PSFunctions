@@ -1,12 +1,12 @@
 ##Folder Directory Creation
 
-$localPath = D:\Software\LocalPowerShellRepo
+$localPath = 'C:\Users\Administrator\Documents\LocalPowerShellRepo'
 New-Item -Path $localPath -ItemType Directory
 
 
 ##SMB Share Creation
 
-$localPath = D:\Software\LocalPowerShellRepo
+$localPath = 'C:\Users\Administrator\Documents\LocalPowerShellRepo'
 $smbShare = @{
 	Name = 'MALLocalRepo'
 	Path = $localPath
@@ -20,14 +20,38 @@ New-SmbShare $smbShare
 
 ##Register Repository
 
-$remotePath = '\\10.37.202.199\Software\LocalPowerShellRepo'
+$localPath = 'C:\Users\Administrator\Documents\LocalPowerShellRepo'
 $localPsRepoParam = @{
-	Name = 'MALLocalRepo'
-	SourceLocation = $remotePath
-	PublishLocation = $remotePath
+	Name = 'Local PS Repo'
+	SourceLocation = $localPath
+	PublishLocation = $localPath
 	InstallationPolicy = 'Trusted'
 } 
 Register-PSRepository @localPsRepoParam
+
+
+
+
+
+Find-Module -Name PSWindowsUpdate
+Install-Module -Name PSWindowsUpdate
+
+Get-PSRepository
+
+Unregister-PSRepository -Name 
+
+
+
+Invoke-WUJob -Credential 'malsvradm' -Taskname WUReboot -ComputerName '10.37.202.201' -RunNow -Confirm:$false -Verbose 
+-Script 
+{
+	Get-WURebootStatus 
+}
+
+
+
+
+
 
 Register-PSRepository -Name MALLocalRepo -SourceLocation '\\10.37.202.199\Software\LocalPowerShellRepo' -PublishLocation '\\10.37.202.199\Software\LocalPowerShellRepo' -InstallationPolicy 'Trusted'
 

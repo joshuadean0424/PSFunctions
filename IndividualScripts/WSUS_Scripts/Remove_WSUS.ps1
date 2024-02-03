@@ -14,7 +14,7 @@ if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandPr
 Stop-Service -Name wuauserv
 Write-Host "Windows Update Service Successfully Stopped."
 
-Remove-Item HKLM: \Software\Policies\Microsoft\Windows\WindowsUpdate -Recurse
+Remove-Item "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate" -Recurse
 Write-Host "Removed WSUS Registry Key."
 
 Read-Host "Hit Enter to Restart Windows Update Service"

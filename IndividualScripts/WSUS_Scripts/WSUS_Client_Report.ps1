@@ -1,6 +1,6 @@
 ###Author: Joshua Dean
-### Date Created: 11/25/2023
-### Script to Force Client to Check in with WSUS Server
+### Date Created: 1/2/2024
+### Script to Force Client to Report to WSUS Server and get more updates
 
 
 
@@ -12,4 +12,12 @@ if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandPr
     }
 }
 
-wuauclt /detectnow /reportnow
+# Find Updates and report to the WSUS Server
+$updateSession = new-object -com "Microsoft.Update.Session"; $updates=$updateSession.CreateupdateSearcher().Search($criteria).Updates
+Start-sleep -seconds 10
+wuauclt /detectnow
+wuauclt /reportnow
+c:\windows\system32\UsoClient.exe startscan
+
+
+Read-Host "Hit Enter to Exit"

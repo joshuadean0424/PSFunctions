@@ -22,7 +22,7 @@ $value2 = "http://10.37.202.201:8530"
 $name3 = "DoNotConnectToWindowsUpdateInternetLocations"
 $value3 = "1"
 $name4 = "TargetGroupEnabled"
-$value4 = "1"
+$value4 = "0"
 $registryPathAU = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
 $nameAU1 = "AUOptions"
 $valueAU1 = "4"
@@ -33,7 +33,7 @@ $valueAU3 = "1"
 $nameAU4 = "AutoInstalledMinorUpdates"
 $valueAU4 = "1"
 $nameAU5 = "DetectionFrequency"
-$valueAU5 = "a"
+$valueAU5 = "4"
 $nameAU6 = "DetectionFrequencyEnabled"
 $valueAU6 = "1"
 $nameAU7 = "IncludeRecommendedUpdates"
@@ -45,17 +45,17 @@ $valueAU9 = "1"
 $nameAU10 = "NoAutoUpdate"
 $valueAU10 = "0"
 $nameAU11 = "RebootRelaunchTimeout"
-$valueAU11 = "a"
+$valueAU11 = "1"
 $nameAU12 = "RebootRelaunchTimeoutEnabled"
 $valueAU12 = "1"
 $nameAU13 = "RescheduleWaitTime"
-$valueAU13 = "a"
+$valueAU13 = "15"
 $nameAU14 = "RescheduleWaitTimeEnabled"
 $valueAU14 = "1"
 $nameAU15 = "ScheduledInstallDay"
 $valueAU15 = "0"
 $nameAU16 = "ScheduledInstallTime"
-$valueAU16 = "0"
+$valueAU16 = "2"
 
 
 
@@ -84,9 +84,8 @@ ELSE
 {
     New-ItemProperty -Path $registryPath -Name $name1 -Value $value1 -Force | Out-Null
     New-ItemProperty -Path $registryPath -Name $name2 -Value $value2 -Force | Out-Null
-    New-ItemProperty -Path $registryPath -Name $name3 -Value $value3 -Force | Out-Null
-    New-ItemProperty -Path $registryPath -Name $name4 -Value $value4 -PropertyType DWORD -Force | Out-Null
-    New-ItemProperty -Path $registryPath -Name $name5 -Value $value5 -PropertyType DWORD -Force | Out-Null
+    New-ItemProperty -Path $registryPath -Name $name3 -Value $value4 -PropertyType DWORD -Force | Out-Null
+    New-ItemProperty -Path $registryPath -Name $name4 -Value $value5 -PropertyType DWORD -Force | Out-Null
 }
 IF(!(Test-Path $registryPathAU))
 {
@@ -114,7 +113,7 @@ ELSE
     New-ItemProperty -Path $registryPathAU -Name $nameAU2 -Value $valueAU2 -PropertyType DWORD -Force | Out-Null
 }
 
-
+Write-Host "All Initial Registry Files Added."
 # Restart Windows Update
 Read-Host "Hit Enter to Restart Windows Update Service"
 Start-Service -Name wuauserv
@@ -122,10 +121,10 @@ Write-Host "Windows Update Service Successfuly Restarted."
 
 # Find Updates and report to the WSUS Server
 $updateSession = new-object -com "Microsoft.Update.Session"; $updates=$updateSession.CreateupdateSearcher().Search($criteria).Updates
-Start-sleep -seconds 10
+Start-sleep -seconds "10"
 wuauclt /detectnow
 wuauclt /reportnow
-
-
+c:\windows\system32\UsoClient.exe startscan
+Write-Host "Update & Report to WSUS Server is done."
 
 Read-Host "Hit Enter to Exit"

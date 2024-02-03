@@ -3,10 +3,11 @@
 Import-Module PSFunctions -Verbose -Force
 Import-Module psTrustedHosts -Force
 Import-Module PoshWSUS -Force
-Import-Module PSWindowsUpdate -force
-Import-Module PowerShellGet -force
+Import-Module PSWindowsUpdate -Force
+Import-Module PowerShellGet -Force
+Import-Module PendingReboot -Force
 
 
-Start-Transcript "D:\Powershell\transcript\transcript0.txt" -Append
+Start-Transcript "D:\GitHub\transcript\transcript0.txt" -Append
 cd C:\
 cls

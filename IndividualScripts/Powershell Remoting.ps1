@@ -2,6 +2,8 @@
 Get-ChildItem WSMan:\localhost\Client\TrustedHosts
 winrm s winrm/config/client '@{TrustedHosts="673448-RAXDC01"}'
 winrm s winrm/config/client '@{TrustedHosts="579188-HYP1"}'
+##Single Server
+winrm set winrm/config/client ‘@{TrustedHosts="machineA"}’
 
 #domain to domain (http)
 New-PSSession -ComputerName Test-Join -Credential domain\user
@@ -33,7 +35,16 @@ Get-NetTCPConnection -LocalPort 5985
 
 
 #Basic PS Sessions
+## To enter a direct session with a remote computer
+Enter-PSSession -ComputerName RemoteDeviceName -Credential domain\user
+
+## To attach a session to a variable for invoke command use
 $cred = get-credential
 $session = New-PSSession -ComputerName 10.37.202.202 -Credential $cred
 $2devices = Get-Content -Path 'C:\Users\Mobis Alabama\Documents\Dean Powershell Repository\serversTest.txt' 
 $multisession = New-PSSession -ComputerName $2devices -Credential $cred
+
+
+
+
+Invoke-Command -Session $session -ScriptBlock {hostname}

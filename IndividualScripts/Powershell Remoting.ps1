@@ -46,5 +46,20 @@ $multisession = New-PSSession -ComputerName $2devices -Credential $cred
 
 
 
+## Invoke Command to get Memory Usage from Remote Session
+Invoke-Command -Session $Session -ScriptBlock 
+{
+    $CompObject =  Get-WmiObject -Class WIN32_OperatingSystem
+    $Memory = ((($CompObject.TotalVisibleMemorySize - $CompObject.FreePhysicalMemory)*100)/ $CompObject.TotalVisibleMemorySize)
+    Write-Host "Memory usage in Percentage:" $Memory
+}
 
-Invoke-Command -Session $session -ScriptBlock {hostname}
+
+
+##Get Memory Usage as a Percentage
+{
+    $CompObject =  Get-WmiObject -Class WIN32_OperatingSystem
+    $Memory = ((($CompObject.TotalVisibleMemorySize - $CompObject.FreePhysicalMemory)*100)/ $CompObject.TotalVisibleMemorySize)
+ 
+    Write-Host "Memory usage in Percentage:" $Memory
+}

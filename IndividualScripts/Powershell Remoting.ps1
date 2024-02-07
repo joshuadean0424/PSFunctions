@@ -24,13 +24,13 @@ winrm/config/Listener?Address=*+Transport=HTTP '@{Port="8888"}'
 Get-WSManInstance -ResourceURI winrm/config/service/Auth
 Get-WSManInstance -ResourceURI winrm/config/client/Auth
 Get-WSManInstance -ResourceURI winrm/config/client
-
-
+winrm get winrm/config/service
+winrm get winrm/config/client
 
 
 #Test Connection 
 Test-NetConnection -ComputerName 10.37.202.201 -Port 5985
-Test-WSMan 10.37.202.201 -Authentication Negotiate -Credential $cred
+Test-WSMan 10.37.201.21 -Authentication Negotiate -Credential $cred
 Get-NetTCPConnection -LocalPort 5985
 
 
@@ -63,3 +63,7 @@ Invoke-Command -Session $Session -ScriptBlock
  
     Write-Host "Memory usage in Percentage:" $Memory
 }
+
+
+$session = New-PSSession -ComputerName 10.37.202.202 -Credential $cred
+Invoke-Command -Session $session -ScriptBlock {Get-PSrepository}

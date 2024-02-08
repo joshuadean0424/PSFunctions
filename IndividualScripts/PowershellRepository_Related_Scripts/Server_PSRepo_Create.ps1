@@ -7,8 +7,11 @@
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
 #Variables & Functions
-$DirectPath = 'C:\Users\Administrator\Documents'
-$localPath = 'C:\Users\Administrator\Documents\Powershell Repo'
+##$DirectPath = 'C:\Users\Administrator\Documents'
+##$localPath = 'C:\Users\Administrator\Documents\Powershell Repo'
+
+$DirectPath = 'C:\'
+$localPath = 'C:\Powershell Repo'
 $localparam = @{
 	Name = 'PowerShell Repo'
 	SourceLocation = $localPath

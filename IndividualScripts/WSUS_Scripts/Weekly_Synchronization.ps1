@@ -13,7 +13,7 @@ if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandPr
 }
 
 
-$wsusserver = 10.37.202.201
+$wsusserver = "MALWSUS01"
 [reflection.assembly]::LoadWithPartialName("Microsoft.UpdateServices.Administration") | out-null
 $wsus = [Microsoft.UpdateServices.Administration.AdminProxy]::GetUpdateServer($wsusserver, $False,8530);
 $wsus.GetSubscription().StartSynchronization();

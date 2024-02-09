@@ -1,0 +1,1 @@
+get-WsusServer | invoke-WsusServerCleanup -cleanupObsoleteUpdates -cleanupUnneededContentFiles -DeclineExpiredUpdates -DeclineSupersededUpdates
